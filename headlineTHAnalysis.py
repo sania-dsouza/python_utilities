@@ -19,7 +19,7 @@ final_YearlyData = {}
 # get the data
 # source : The Hindu, for example, the format of the page link: https://www.thehindu.com/archive/web/2009/08/18/
 startYear = 2010
-lastYear = 2011
+lastYear = 2019
 
 #ps = PorterStemmer()
 for year in range(startYear, lastYear+1):
@@ -38,7 +38,7 @@ for year in range(startYear, lastYear+1):
     # Input: list with headlines 
     # tasks involved: 
     # tokenize the words
-    tokenWords = re.findall("\w+", str(data2transform))
+    tokenWords = re.findall("[A-Za-z]+", str(data2transform))
     words, words_final = [], []
     for w in tokenWords:
         words.append(w.lower())
@@ -54,20 +54,27 @@ for year in range(startYear, lastYear+1):
     
     final_YearlyData[year] = words_final
 
-    
 # evaluate the data
 # get the most frequently-used words and plot the word vs count graph
 # get the values of the dictionary final_YearlyData as separate values in this list
 
 dict_Values = [final_YearlyData[i] for i in final_YearlyData.keys()]
+# print(dict_Values)
+xs, ys = [], []
 for i in dict_Values:
     mostFreq = Counter(i).most_common(1)
-    print(mostFreq)
-
-
-# changes to be made on 12/02
+    xs.append(mostFreq[0][0])
+    ys.append(mostFreq[0][1])
+    
 # plot the year vs the counter of the most-used word (probably a function to calculate this)
 
+plt.plot(xs, ys)
+yr = 0
+for x,y in zip(xs, ys):
+    label = str(startYear + yr)
+    plt.annotate(label, (x,y), textcoords = "offset points", xytext = (0,10), ha = 'center')
+    yr = yr + 1
+plt.show()
 
 
 

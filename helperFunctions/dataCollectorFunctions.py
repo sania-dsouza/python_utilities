@@ -8,21 +8,21 @@ def getNumberDays(monNo, year):
         return 30
     else:
         if year%4 : 
-            return 29
-        else:
             return 28
+        else:
+            return 29
 
 def getYearlyRawData(webLink, year):
 
     # initialize final variable which which
     # will hold the year's headlines (all months)
     yearlyData, dayHeadlines, monthHeadlines = [], [], []
-    for month in range(1,2):
+    for month in range(1,13):
         webLink2 = webLink + str(month) + "/"
 
         days = getNumberDays(month, year)    # get the number of days in the selected month
 
-        for day in range(1,2):          # get the headlines of each day
+        for day in range(1, days+1):          # get the headlines of each day
             webLink1 = webLink2 + str(day) + "/"
 
             # get the link content in html and parse

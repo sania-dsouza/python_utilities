@@ -1,10 +1,6 @@
-# Project includes my first data-driven work using Python and accompanying libraries.
-# Some example of projects could be:
+# Repo includes common data analysis scaffolding code or entire programs 
+_List is updated as new work is added_
 
-# Analyze newspaper headlines of 'The Hindu' from 2000 to 2019 for sentiments over the years completed 12/02/2019
-
-Observations:
--- Reading a year's newspapers for headlines took 25 minutes
--- For 2010 - 2019, a total of 250 minutes, 4 hours 20 minutes
--- The plot at the end gives the most used word 
--- This could be extended in the future. Pick up the 10-20 most commonly-used words in a year and find trends on the basis of this 
+- `webScraper.py` : Web scraper using requests and BeautifulSoup 
+- `sentimentAnalysis.py`: Sentiment analyzer using the NLTK Natural Language Processing library
+- `cli.py`: Command line program using click

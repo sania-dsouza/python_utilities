@@ -3,6 +3,7 @@
 
 # Use Twitter API to get data (future work)
 
+
 # Currently uses data from the nltk's twitter_samples
 from nltk.corpus import twitter_samples
 from nltk.tag import pos_tag
@@ -38,6 +39,7 @@ def remove_noise(tweet_tokens, stop_words):
 
         if len(token) > 0 and token not in string.punctuation and token.lower() not in stop_words:
             cleaned_tokens.append(token.lower())
+
     return cleaned_tokens
 
 
@@ -48,7 +50,7 @@ def get_all_words(cleaned_tokens_list):
             yield token
 
 
-# convert the tweets to dictionaries to pass thru the Naive bayes classifier model
+# generator to convert the tweets to dictionaries to pass thru the Naive bayes classifier model
 def get_tweets_for_model(cleaned_tokens_list):
     for tweet_tokens in cleaned_tokens_list:
         yield dict([token, True] for token in tweet_tokens)
@@ -66,10 +68,10 @@ for tokens in positive_tweet_tokens:
 for tokens in negative_tweet_tokens:
     negative_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
 
-# get a list of all the tokens in the positive generated lists
+# Just a test: get a list of all the tokens in the positive generated lists
 all_pos_words = get_all_words(positive_cleaned_tokens_list)
-
 freq_dist_pos = FreqDist(all_pos_words)
+# -- end of test
 
 # Get the dictionaries
 positive_tokens_for_model = get_tweets_for_model(positive_cleaned_tokens_list)
@@ -83,6 +85,7 @@ dataset = positive_dataset + negative_dataset
 
 random.shuffle(dataset)    # randomize the dataset to remove any bias
 
+# Split training data : test data to be 70% : 30% of data set
 train_data = dataset[0:7000]
 test_data = dataset[7000:]
 
@@ -92,10 +95,11 @@ classifier = NaiveBayesClassifier.train(train_data)
 #
 # print(classifier.show_most_informative_features(10))
 
+# testing the model
 custom_tweet = "I ordered just once from TerribleCo, they screwed up, never used the app again."
 
 custom_tokens = remove_noise(word_tokenize(custom_tweet), stop_words)
-
+# print(custom_tokens)
 print(classifier.classify(dict([token, True] for token in custom_tokens)))
 
 

@@ -1,3 +1,5 @@
+# https://www.analyticsvidhya.com/blog/2021/06/learn-how-to-implement-face-recognition-using-opencv-with-python/
+
 from imutils import paths  # imutils includes opencv functions
 import face_recognition
 import pickle

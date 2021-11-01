@@ -45,8 +45,8 @@ f.close()  # to close file
 # ------------------------------------------------------------------------------------
 
 # to find path of xml file containing haarCascade file
-cfp = os.path.dirname(cv.__file__) + "/data/haarcascade_frontalface_alt2.xml"
-print(cfp)
+# cfp = os.path.dirname(cv.__file__) + "/data/haarcascade_frontalface_alt2.xml"
+# print(cfp)
 
 # load the haar cascade in the cascade classifier
 fc = cv.CascadeClassifier('haarcascade_frontalface_default.xml')

@@ -33,7 +33,7 @@ for (i, ip) in enumerate(imagePath):
 data = {"encodings": kEncodings, "names": kNames}
 
 # use pickle to save data into a file for later use
-f = open("face_enc", "wb")   # to open file in write mode
+f = open("../face_enc", "wb")   # to open file in write mode
 
 f.write(pickle.dumps(data))
 
@@ -51,10 +51,10 @@ fc = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
 print(fc)
 
 # load the known faces and embeddings saved in last file
-data = pickle.loads(open('face_enc', "rb").read())
+data = pickle.loads(open('../face_enc', "rb").read())
 
 # Find path to the image you want to detect face and pass it here
-image = cv.imread('aaron.jpg')
+image = cv.imread('../aaron.jpg')
 #cv.imshow('test', image)
 
 
